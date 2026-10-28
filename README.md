@@ -2,6 +2,8 @@
 
 My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, Catppuccin colours, JetBrainsMono Nerd Font.
 
+![cmux with this config](docs/cmux.png)
+
 > Setting this up with an AI agent? Point it at [`CLAUDE.md`](CLAUDE.md). It has step-by-step instructions.
 
 ## What's in here
