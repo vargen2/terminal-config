@@ -32,7 +32,7 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 
 **`starship/starship.toml`**
 - Segments shown: OS icon → directory → git branch/status → command duration.
-- Uses the `catppuccin_mocha` palette (Ghostty uses the Frappe theme; the mismatch is deliberate and fine). Change `palette = '…'` to `catppuccin_frappe`/`macchiato`/`latte` to taste.
+- Uses the `catppuccin_frappe` palette to match Ghostty's `Catppuccin Frappe` theme. If you change one, change the other (`mocha`/`macchiato`/`latte` palettes are also defined in the file).
 - Language segments (node, python, rust, …) are present but `disabled = true`. Flip any to `false` to show versions.
 - `cmd_duration` sends a desktop notification for commands over 45s.
 
