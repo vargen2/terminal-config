@@ -16,7 +16,7 @@ Read `README.md` first for what each file does and what is optional.
 
 1. **Check prerequisites**
    - macOS, zsh (`echo $SHELL`), Homebrew (`brew --version`). If brew is missing, ask before installing it from https://brew.sh.
-   - Note the brew prefix (`brew --prefix`). The zsh snippet assumes `/opt/homebrew` (Apple Silicon). On Intel use `/usr/local` and adjust the paths.
+   - Note the brew prefix (`brew --prefix`). The zsh snippet uses `$HOMEBREW_PREFIX` and falls back to `/opt/homebrew`. If it's `/usr/local` (Intel), check that `brew shellenv` runs in `~/.zprofile` so `HOMEBREW_PREFIX` is set.
 
 2. **Install required tools** (skip what's already installed)
    ```sh
@@ -37,11 +37,11 @@ Read `README.md` first for what each file does and what is optional.
 
 5. **zsh extras** (if chosen)
    - `brew install zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search eza`
-   - Append the lines from `zsh/zshrc-snippet.zsh` that aren't already in `~/.zshrc`. Keep `starship init` single, fix the brew prefix if needed, and keep `zsh-syntax-highlighting` sourced before `history-substring-search`.
+   - Append the lines from `zsh/zshrc-snippet.zsh` that aren't already in `~/.zshrc`. Keep `starship init` single and keep `zsh-syntax-highlighting` sourced before `history-substring-search`.
 
 6. **cmux** (if chosen)
    - Back up `~/.config/cmux/cmux.json` if it exists, then `mkdir -p ~/.config/cmux && cp cmux/cmux.json ~/.config/cmux/cmux.json`.
-   - If they already had a cmux.json with other settings, merge the `shortcuts.bindings` keys in instead of replacing the file.
+   - If they already had a cmux.json with other settings, merge the `shortcuts.bindings` and `customSidebars` keys in instead of replacing the file.
 
 7. **Claude Code settings** (if chosen)
    - `brew install jq` if missing, because the status lines need it.

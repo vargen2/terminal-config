@@ -36,14 +36,14 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 **`starship/starship.toml`**
 - Segments shown: OS icon → directory → git branch/status → command duration.
 - Uses the `catppuccin_frappe` palette to match Ghostty's `Catppuccin Frappe` theme. If you change one, change the other (`mocha`/`macchiato`/`latte` palettes are also defined in the file).
-- Language segments (node, python, rust, …) are present but `disabled = true`. Flip any to `false` to show versions.
+- No language/version segments. To add one (e.g. `$nodejs`), put it in the top-level `format` string; modules not listed there never render.
 - `cmd_duration` sends a desktop notification for commands over 45s.
 
 **`cmux/cmux.json`**
-- Only rebinds sidebar tab next/prev to `cmd+ctrl+↓/↑`. Everything else is cmux default. The full list of options is in the `$schema` URL, or open cmux Settings.
+- Rebinds sidebar tab next/prev to `cmd+ctrl+↓/↑` and sets `customSidebars.renderer` to `inProcess`. Everything else is cmux default. The full list of options is in the `$schema` URL, or open cmux Settings.
 
 **`zsh/zshrc-snippet.zsh`**
-- Autosuggestions, syntax highlighting, history substring search (brew packages), and `ll` via `eza`.
+- Autosuggestions, syntax highlighting, history substring search (brew packages), `ll` via `eza`, and `c` for `clear`.
 
 **`claude/settings.json`** (Claude Code; all optional, a trimmed-down version of my own settings)
 - `statusLine`: one line with dir, git branch, model, effort, and a context-usage bar. Needs `jq` (`brew install jq`).
@@ -60,7 +60,8 @@ Left out on purpose: the allow-everything permissions and auto mode, my model, e
 ## Updating this repo from my machine
 
 ```sh
-cp ~/.config/starship.toml starship/starship.toml
+cp ~/.config/starship.toml starship/starship.toml   # the repo copy drops unused module blocks; re-trim after copying
 cp ~/.config/cmux/cmux.json cmux/cmux.json
+# claude: claude/settings.json is a hand-trimmed subset of ~/.claude/settings.json. Copy over changed keys by hand
 # ghostty: my live file is ~/Library/Application Support/com.mitchellh.ghostty/config. Merge changes by hand (the repo copy is cleaned up and annotated)
 ```
