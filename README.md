@@ -53,7 +53,7 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 - `theme: dark-ansi`: Claude Code uses the terminal's ANSI colours, so it picks up the Catppuccin theme.
 - `outputStyle: Concise` and `spinnerVerbs` set to just "Thinking": shorter answers and a calmer spinner.
 - `attribution` left empty: no "Co-Authored-By Claude" in commits and PRs. Remove this if your team wants that line.
-- `permissions.deny`: blocks `sudo`, `rm -rf ~`, disk tools, and shutdown/reboot. `permissions.ask`: always confirm `git push`.
+- `permissions.deny`: blocks `sudo`, `rm -rf ~`, disk tools (`dd`, `fdisk`, `diskutil` erase/partition), shutdown/reboot, and removing launchd jobs. `permissions.ask`: always confirm `git push`. These are prefix matches, so they catch slips, not determined variants (`rm -fr ~` or `rm -rf $HOME` still get through). They are a guardrail, not a sandbox.
 
 Left out on purpose: the allow-everything permissions and auto mode, my model, effort, and env tuning, my hooks, skills, and plugins, and `enableAllProjectMcpServers`, which trusts any MCP server a repo declares.
 

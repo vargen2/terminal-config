@@ -5,8 +5,6 @@
 # --- Look (needs the JetBrainsMono Nerd Font installed) ---
 theme = Catppuccin Frappe
 font-family = JetBrainsMono Nerd Font
-font-feature = calt
-font-feature = liga
 background-opacity = 0.95
 background-opacity-cells = false
 background-blur = true

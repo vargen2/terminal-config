@@ -24,16 +24,18 @@
     "deny": [
       "Bash(rm -rf ~)",
       "Bash(rm -rf ~/*)",
-      "Bash(sudo rm:*)",
       "Bash(sudo:*)",
       "Bash(shutdown:*)",
       "Bash(reboot:*)",
-      "Bash(systemctl:*)",
-      "Bash(launchctl:*)",
-      "Bash(mkfs:*)",
+      "Bash(launchctl bootout:*)",
+      "Bash(launchctl unload:*)",
+      "Bash(launchctl remove:*)",
+      "Bash(launchctl disable:*)",
       "Bash(dd:*)",
       "Bash(fdisk:*)",
-      "Bash(parted:*)"
+      "Bash(diskutil eraseDisk:*)",
+      "Bash(diskutil eraseVolume:*)",
+      "Bash(diskutil partitionDisk:*)"
     ],
     "ask": [
       "Bash(git push:*)"
