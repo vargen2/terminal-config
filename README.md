@@ -1,0 +1,52 @@
+# terminal-config
+
+My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, Catppuccin colours, JetBrainsMono Nerd Font.
+
+> Setting this up with an AI agent? Point it at [`CLAUDE.md`](CLAUDE.md). It has step-by-step instructions.
+
+## What's in here
+
+| File | Install to | Used by |
+|---|---|---|
+| `ghostty/config` | `~/.config/ghostty/config` | Ghostty **and** cmux (cmux embeds libghostty and reads this file) |
+| `starship/starship.toml` | `~/.config/starship.toml` | Starship prompt |
+| `cmux/cmux.json` | `~/.config/cmux/cmux.json` | cmux |
+| `zsh/zshrc-snippet.zsh` | append to `~/.zshrc` | zsh |
+
+## Required vs optional
+
+### Required (the prompt looks broken without these)
+- **JetBrainsMono Nerd Font**: `brew install --cask font-jetbrains-mono-nerd-font`. Starship's powerline arrows and icons are Nerd Font glyphs, so without the font they show as boxes.
+- **Starship**: `brew install starship`, plus `eval "$(starship init zsh)"` in `~/.zshrc`.
+- **A terminal that uses the font**: Ghostty/cmux with `font-family = JetBrainsMono Nerd Font` (set in `ghostty/config`). If you use another terminal, set its font to the Nerd Font.
+
+### Optional
+
+**Terminal app**
+- **cmux** (`brew install --cask manaflow-ai/cmux/cmux`, or download from cmux.dev): Ghostty-based terminal with workspaces/sidebar, built for running coding agents.
+- **Ghostty** (`brew install --cask ghostty`): plain terminal. Either one works; both read `ghostty/config`.
+
+**`ghostty/config`**
+- `theme`, `background-opacity`, `background-blur`: the look. Safe to keep.
+- `window-width/height`, `macos-icon`, `quit-after-last-window-closed`, `copy-on-select`: personal taste.
+- **herdr keybinds** (`ctrl+super+…` lines): only useful if you run the herdr TUI. **Delete them otherwise**, because they hijack ctrl+cmd+arrows/t/n/w in every window.
+
+**`starship/starship.toml`**
+- Segments shown: OS icon → directory → git branch/status → command duration.
+- Uses the `catppuccin_mocha` palette (Ghostty uses the Frappe theme; the mismatch is deliberate and fine). Change `palette = '…'` to `catppuccin_frappe`/`macchiato`/`latte` to taste.
+- Language segments (node, python, rust, …) are present but `disabled = true`. Flip any to `false` to show versions.
+- `cmd_duration` sends a desktop notification for commands over 45s.
+
+**`cmux/cmux.json`**
+- Only rebinds sidebar tab next/prev to `cmd+ctrl+↓/↑`. Everything else is cmux default. The full list of options is in the `$schema` URL, or open cmux Settings.
+
+**`zsh/zshrc-snippet.zsh`**
+- Autosuggestions, syntax highlighting, history substring search (brew packages), and `ll` via `eza`.
+
+## Updating this repo from my machine
+
+```sh
+cp ~/.config/starship.toml starship/starship.toml
+cp ~/.config/cmux/cmux.json cmux/cmux.json
+# ghostty: my live file is ~/Library/Application Support/com.mitchellh.ghostty/config. Merge changes by hand (the repo copy is cleaned up and annotated)
+```
