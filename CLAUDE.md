@@ -9,6 +9,7 @@ Read `README.md` first for what each file does and what is optional.
   1. Terminal: cmux, Ghostty, or keep their current terminal (then they must set its font to JetBrainsMono Nerd Font themselves)
   2. zsh plugins + aliases from `zsh/zshrc-snippet.zsh` (default: yes)
   3. cmux shortcut tweak `cmux/cmux.json` (default: yes if cmux)
+  4. Claude Code settings from `claude/settings.json` (default: yes). The README lists what each key does.
 - Don't touch unrelated parts of their `~/.zshrc`.
 
 ## Steps
@@ -42,10 +43,22 @@ Read `README.md` first for what each file does and what is optional.
    - Back up `~/.config/cmux/cmux.json` if it exists, then `mkdir -p ~/.config/cmux && cp cmux/cmux.json ~/.config/cmux/cmux.json`.
    - If they already had a cmux.json with other settings, merge the `shortcuts.bindings` keys in instead of replacing the file.
 
-7. **Verify**
+7. **Claude Code settings** (if chosen)
+   - `brew install jq` if missing, because the status lines need it.
+   - **Merge, never replace.** `~/.claude/settings.json` may hold their own permissions, hooks, and plugins, and may be a symlink, so write through it rather than replacing it. Back it up first. If it already sets `statusLine`, `theme`, `outputStyle`, or `attribution` to something different, ask before overriding. Then:
+     ```sh
+     f=~/.claude/settings.json; [ -f "$f" ] || echo '{}' > "$f"
+     jq -s '.[0] as $a | .[1] as $b | ($a * $b)
+       | .permissions.deny = ((($a.permissions.deny // []) + $b.permissions.deny) | unique)
+       | .permissions.ask  = ((($a.permissions.ask  // []) + $b.permissions.ask)  | unique)' \
+       "$f" claude/settings.json > /tmp/claude-settings.json && cat /tmp/claude-settings.json > "$f"
+     ```
+   - Check: `jq . ~/.claude/settings.json` parses. The changes take effect in the next Claude Code session.
+
+8. **Verify**
    - `zsh -ic 'starship --version && starship explain >/dev/null && echo ok'`
    - `starship print-config >/dev/null` must report no errors.
    - Ask the user to open a **new** cmux/Ghostty window. They should see a red/peach/yellow powerline prompt with a  icon, the path, and the git branch. Boxes or `?` instead of icons mean the terminal isn't using the Nerd Font.
    - In a running cmux, `cmux reload-config` picks up Ghostty changes.
 
-8. **Report**: list what was installed, which files were written, and where the backups are.
+9. **Report**: list what was installed, which files were written, and where the backups are.

@@ -12,6 +12,7 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 | `starship/starship.toml` | `~/.config/starship.toml` | Starship prompt |
 | `cmux/cmux.json` | `~/.config/cmux/cmux.json` | cmux |
 | `zsh/zshrc-snippet.zsh` | append to `~/.zshrc` | zsh |
+| `claude/settings.json` | **merge** into `~/.claude/settings.json` | Claude Code |
 
 ## Required vs optional
 
@@ -41,6 +42,16 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 
 **`zsh/zshrc-snippet.zsh`**
 - Autosuggestions, syntax highlighting, history substring search (brew packages), and `ll` via `eza`.
+
+**`claude/settings.json`** (Claude Code; all optional, a trimmed-down version of my own settings)
+- `statusLine`: one line with dir, git branch, model, effort, and a context-usage bar. Needs `jq` (`brew install jq`).
+- `subagentStatusLine`: shows each running subagent's label, model, and effort. Needs `jq`.
+- `theme: dark-ansi`: Claude Code uses the terminal's ANSI colours, so it picks up the Catppuccin theme.
+- `outputStyle: Concise` and `spinnerVerbs` set to just "Thinking": shorter answers and a calmer spinner.
+- `attribution` left empty: no "Co-Authored-By Claude" in commits and PRs. Remove this if your team wants that line.
+- `permissions.deny`: blocks `sudo`, `rm -rf ~`, disk tools, and shutdown/reboot. `permissions.ask`: always confirm `git push`.
+
+Left out on purpose: the allow-everything permissions and auto mode, my model, effort, and env tuning, my hooks, skills, and plugins, and `enableAllProjectMcpServers`, which trusts any MCP server a repo declares.
 
 ## Updating this repo from my machine
 
