@@ -45,6 +45,8 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 
 **`claude/settings.json`** (Claude Code; all optional, a trimmed-down version of my own settings)
 - `statusLine`: one line with dir, git branch, model, effort, and a context-usage bar. Needs `jq` (`brew install jq`).
+
+  ![Claude Code status line](docs/statusline.png)
 - `subagentStatusLine`: shows each running subagent's label, model, and effort. Needs `jq`.
 - `theme: dark-ansi`: Claude Code uses the terminal's ANSI colours, so it picks up the Catppuccin theme.
 - `outputStyle: Concise` and `spinnerVerbs` set to just "Thinking": shorter answers and a calmer spinner.
