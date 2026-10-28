@@ -29,7 +29,6 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 **`ghostty/config`**
 - `theme`, `background-opacity`, `background-blur`: the look. Safe to keep.
 - `window-width/height`, `macos-icon`, `quit-after-last-window-closed`, `copy-on-select`: personal taste.
-- **herdr keybinds** (`ctrl+super+…` lines): only useful if you run the herdr TUI. **Delete them otherwise**, because they hijack ctrl+cmd+arrows/t/n/w in every window.
 
 **`starship/starship.toml`**
 - Segments shown: OS icon → directory → git branch/status → command duration.

@@ -7,9 +7,8 @@ Read `README.md` first for what each file does and what is optional.
 - **Ask before** installing anything, and **never overwrite** an existing config without backing it up first (`<file>.bak.<YYYYMMDD-HHMMSS>`).
 - **Ask the user** which optional parts they want. Present them as one multi-select question:
   1. Terminal: cmux, Ghostty, or keep their current terminal (then they must set its font to JetBrainsMono Nerd Font themselves)
-  2. herdr keybinds in the Ghostty config (default: **no**, so remove that section)
-  3. zsh plugins + aliases from `zsh/zshrc-snippet.zsh` (default: yes)
-  4. cmux shortcut tweak `cmux/cmux.json` (default: yes if cmux)
+  2. zsh plugins + aliases from `zsh/zshrc-snippet.zsh` (default: yes)
+  3. cmux shortcut tweak `cmux/cmux.json` (default: yes if cmux)
 - Don't touch unrelated parts of their `~/.zshrc`.
 
 ## Steps
@@ -28,7 +27,6 @@ Read `README.md` first for what each file does and what is optional.
 3. **Ghostty config** (needed for both Ghostty and cmux)
    - Check for existing configs at `~/.config/ghostty/config`, `~/.config/ghostty/config.ghostty`, and `~/Library/Application Support/com.mitchellh.ghostty/config`. Ghostty loads all of them, so back up any that exist and tell the user about them. If an existing one has real settings (not just the commented template), ask whether to merge or replace.
    - `mkdir -p ~/.config/ghostty && cp ghostty/config ~/.config/ghostty/config`
-   - If the user said no to herdr keybinds, delete the `# --- herdr keybinds` section and every `keybind = ctrl+super+…` line below it.
    - Validate: `ghostty +validate-config` (for cmux: `/Applications/cmux.app/Contents/Resources/bin/ghostty +validate-config`). It must print no errors.
 
 4. **Starship**

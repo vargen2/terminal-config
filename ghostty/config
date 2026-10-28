@@ -18,23 +18,3 @@ quit-after-last-window-closed = true
 macos-icon = glass
 # Copy selections straight to the system clipboard (macOS has no primary selection).
 copy-on-select = clipboard
-
-# --- herdr keybinds (OPTIONAL: only useful if you run the herdr TUI) ---
-# Ghostty swallows unbound cmd chords instead of encoding them, so a TUI
-# never sees them. Translate ctrl+cmd+arrows into the legacy ctrl+alt+arrow
-# CSI sequences (modifier 7 = ctrl+alt) so herdr can bind them.
-# Applies to every Ghostty window, not just herdr.
-keybind = ctrl+super+arrow_up=csi:1;7A
-keybind = ctrl+super+arrow_down=csi:1;7B
-keybind = ctrl+super+arrow_right=csi:1;7C
-keybind = ctrl+super+arrow_left=csi:1;7D
-
-# Letters have no CSI form and the ESC-prefix (text:\x1b..) encoding did not
-# register, so route these through function keys instead, which do have one.
-# 15;7~ = ctrl+alt+F5, 17;7~ = ctrl+alt+F6. herdr binds those two.
-keybind = ctrl+super+t=csi:15;7~
-keybind = ctrl+super+n=csi:17;7~
-
-# 19;7~ = ctrl+alt+F8, bound to close_workspace in herdr.
-# Closes immediately; confirm_close = false in herdr's config.
-keybind = ctrl+super+w=csi:19;7~
