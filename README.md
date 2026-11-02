@@ -46,7 +46,7 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 - Autosuggestions, syntax highlighting, history substring search (brew packages), `ll` via `eza`, and `c` for `clear`.
 
 **`claude/settings.json`** (Claude Code; all optional, a trimmed-down version of my own settings)
-- `statusLine`: one line with dir, git branch, model, effort, and a context-usage bar. Needs `jq` (`brew install jq`).
+- `statusLine`: one line with dir, git branch, model, effort, a context-usage bar, and a live countdown until the prompt cache expires (green, yellow under 15m, red under 5m, `cold` once expired). Refreshes every second. Needs `jq` (`brew install jq`).
 
   ![Claude Code status line](docs/statusline.png)
 - `subagentStatusLine`: shows each running subagent's label, model, and effort. Needs `jq`.
