@@ -14,6 +14,7 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 | `starship/starship.toml` | `~/.config/starship.toml` | Starship prompt |
 | `cmux/cmux.json` | `~/.config/cmux/cmux.json` | cmux |
 | `zsh/zshrc-snippet.zsh` | append to `~/.zshrc` | zsh |
+| `git/gitconfig` | apply with `git config --global` | git |
 | `claude/settings.json` | **merge** into `~/.claude/settings.json` | Claude Code |
 
 ## Required vs optional
@@ -44,6 +45,13 @@ My macOS terminal setup: **cmux** (or plain **Ghostty**) + **Starship** prompt, 
 
 **`zsh/zshrc-snippet.zsh`**
 - Autosuggestions, syntax highlighting, history substring search (brew packages), `ll` via `eza`, and `c` for `clear`.
+- Git aliases: `gst` status, `gp` push, `gl` pull, `gb` branch, `gsw` switch, `gsm` switch to main and pull, `glo` short log, `gd` diff, `gpf` force-push with lease, `gcleanup` fetch with prune and delete local branches merged into `main`. `gcleanup` misses squash-merged branches; delete those with `git branch -D`.
+
+**`git/gitconfig`**
+- `pull.rebase`: `git pull` rebases instead of making merge commits.
+- `push.autoSetupRemote`: the first push of a new branch sets its upstream.
+- `fetch.prune`: fetches drop remote branches that were deleted.
+- `init.defaultBranch = main`.
 
 **`claude/settings.json`** (Claude Code; all optional, a trimmed-down version of my own settings)
 - `statusLine`: one line with dir, git branch, model, effort, a context-usage bar, and a live countdown until the prompt cache expires (green, yellow under 15m, red under 5m, `cold` once expired). Refreshes every second. Needs `jq` (`brew install jq`).
@@ -62,6 +70,7 @@ Left out on purpose: the allow-everything permissions and auto mode, my model, e
 ```sh
 cp ~/.config/starship.toml starship/starship.toml   # the repo copy drops unused module blocks; re-trim after copying
 cp ~/.config/cmux/cmux.json cmux/cmux.json
+# git: git/gitconfig holds only shared settings (not user/credentials). Compare with `git config --global --list`
 # claude: claude/settings.json is a hand-trimmed subset of ~/.claude/settings.json. Copy over changed keys by hand
 # ghostty: my live file is ~/Library/Application Support/com.mitchellh.ghostty/config. Merge changes by hand (the repo copy is cleaned up and annotated)
 ```

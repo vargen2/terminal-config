@@ -1,0 +1,15 @@
+# Git settings that go with the aliases in zsh/zshrc-snippet.zsh.
+# Apply each key with `git config --global <section>.<key> <value>`; don't copy
+# this file over ~/.gitconfig, which holds your name, email, and credentials.
+
+[init]
+	defaultBranch = main
+[pull]
+	# `git pull` rebases local commits on top of the remote instead of making merge commits.
+	rebase = true
+[push]
+	# `git push` on a new branch sets up the upstream, no --set-upstream needed.
+	autoSetupRemote = true
+[fetch]
+	# Every fetch/pull drops remote-tracking branches deleted on the server.
+	prune = true

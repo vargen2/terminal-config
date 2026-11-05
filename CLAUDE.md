@@ -10,6 +10,7 @@ Read `README.md` first for what each file does and what is optional.
   2. zsh plugins + aliases from `zsh/zshrc-snippet.zsh` (default: yes)
   3. cmux shortcut tweak `cmux/cmux.json` (default: yes if cmux)
   4. Claude Code settings from `claude/settings.json` (default: yes). The README lists what each key does.
+  5. Git settings from `git/gitconfig` (default: yes)
 - Don't touch unrelated parts of their `~/.zshrc`.
 
 ## Steps
@@ -55,10 +56,14 @@ Read `README.md` first for what each file does and what is optional.
      ```
    - Check: `jq . ~/.claude/settings.json` parses. The changes take effect in the next Claude Code session.
 
-8. **Verify**
+8. **Git settings** (if chosen)
+   - Never copy the file over `~/.gitconfig`; it holds their identity and credentials. Back up `~/.gitconfig` first.
+   - For each key in `git config -f git/gitconfig --list`, check `git config --global --get <key>`. If it's set to something different, ask before changing it. Then `git config --global <key> <value>`.
+
+9. **Verify**
    - `zsh -ic 'starship --version && starship explain >/dev/null && echo ok'`
    - `starship print-config >/dev/null` must report no errors.
    - Ask the user to open a **new** cmux/Ghostty window. They should see a red/peach/yellow powerline prompt with a  icon, the path, and the git branch. Boxes or `?` instead of icons mean the terminal isn't using the Nerd Font.
    - In a running cmux, `cmux reload-config` picks up Ghostty changes.
 
-9. **Report**: list what was installed, which files were written, and where the backups are.
+10. **Report**: list what was installed, which files were written, and where the backups are.
